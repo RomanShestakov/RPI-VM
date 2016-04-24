@@ -21,8 +21,9 @@
     - { role: nicholsn.miniconda,
               tags: ["miniconda"],
               miniconda_home: '/home/pi/miniconda',
-              url: "{{ miniconda_url }}" }
-    - { role: RomanShestakov.ansible-role-conda-packages, conda_dir: '/home/pi/miniconda' }
+              url: "{{ miniconda_url }}",
+              tags: ["conda"]}
+    - { role: RomanShestakov.ansible-role-conda-packages, conda_dir: '/home/pi/miniconda',tags: ["conda"] }
     - { role: RomanShestakov.ansible-role-magma, rsa_key: '/root/.ssh/magma' }
 
   post_tasks:
