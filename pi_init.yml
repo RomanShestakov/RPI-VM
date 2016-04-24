@@ -1,6 +1,6 @@
-# raspberry_init.yml - play to install a raspberry
+# pi_init.yml - play to install a raspberry
 
-- name: raspberry_init.yml
+- name: pi_init.yml
   hosts: pis
   remote_user: pi
   sudo: yes
