@@ -1,0 +1,71 @@
+# roles_requirements.yml
+
+# from galaxy
+# - src: yatesr.timezone
+
+# - src: git+https://github.com/ANXS/git.git
+#   version: "v1.0.1"
+#   name: ANXS.git
+
+- src: git+https://github.com/geerlingguy/ansible-role-git.git
+  version: "1.1.1"
+  name: geerlingguy.git
+
+- src: git+https://github.com/RomanShestakov/build-essential.git
+  #version: "v1.0.1"
+  name: ANXS.build-essential
+
+- src: git+https://github.com/RomanShestakov/ansible-role-erlang.git
+  #version: "v1.1.0"
+  name: RomanShestakov.ansible-role-erlang
+
+# - src: git+https://github.com/mtpereira/ansible-erlang.git
+#   version: "1.1.0"
+#   name: mtpereira.erlang
+
+- src: git+https://github.com/RomanShestakov/postgresql.git
+  #version: "v1.3.0"
+  name: ANXS.postgresql
+
+- src: git+https://github.com/RomanShestakov/ansible-role-miniconda.git
+  name: nicholsn.miniconda
+
+- src: git+https://github.com/ANXS/python.git
+  version: "v1.0.1"
+  name: ANXS.python
+
+# - src: git+https://github.com/trinitronx/ansible-role-tmux.git
+#   name: trinitronx.ansible-role-tmux
+
+- src: git+https://github.com/RomanShestakov/ansible-role-emacs.git
+  name: RomanShestakov.ansible-role-emacs
+
+- src: git+https://github.com/RomanShestakov/ansible-role-tmux.git
+  name: RomanShestakov.ansible-role-tmux
+
+- src: git+https://github.com/RomanShestakov/ansible-role-dotfiles.git
+  name: RomanShestakov.ansible-role-dotfiles
+
+- src: git+https://github.com/RomanShestakov/ansible-role-conda-packages
+  name: RomanShestakov.ansible-role-conda-packages
+
+- src: git+https://github.com/RomanShestakov/ansible-raspi-config.git
+  name: mikolak.raspi-config
+
+- src: git+https://github.com/RomanShestakov/ansible-role-pi-setup.git
+  name: RomanShestakov.ansible-role-pi-setup
+
+- src: git+https://github.com/RomanShestakov/ansible-role-magma.git
+  name: RomanShestakov.ansible-role-magma
+
+- src: git+https://github.com/RomanShestakov/ansible-role-manage-keys.git
+  name: RomanShestakov.ansible-role-manage-keys
+
+- src: git+https://github.com/knopki/ansible-locale.git
+  name: knopki.locale
+
+- src: git+https://github.com/Stouts/Stouts.timezone.git
+  name: Stouts.timezone
+
+- src: git+https://github.com/Stouts/Stouts.hostname.git
+  name: Stouts.hostname
