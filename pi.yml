@@ -1,9 +1,11 @@
-# raspberry.yml - play to install a raspberry
+# pi.yml - play to install a raspberry
 
-- name: raspberry.yml
+- name: pi.yml
   hosts: pis
   remote_user: pi
   sudo: yes
+  vars_files:
+    - defaults/main.yml
 
   roles:
     - { role: geerlingguy.git, become: yes, tags: ["git"] }
