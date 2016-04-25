@@ -1,4 +1,4 @@
-erlang_version: "17.4"
+erlang_version: "17.5"
 postgresql_version: 9.4
 erlang_build_flags: ""
 emacs_repo_url: "https://github.com/emacs-mirror/emacs.git"
@@ -6,6 +6,5 @@ emacs_version: "emacs-24.5"
 dotfiles_repo_url: "https://github.com/RomanShestakov/dotfiles.git"
 dot_emacs_repo_url: "https://github.com/RomanShestakov/.emacs.d.git"
 conda_dir: "/home/vagrant/miniconda"
-nfs: 192.168.1.79
 postgresql_apt_repository: 'deb-src http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpi'
 miniconda_url: "http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh"
