@@ -7,8 +7,3 @@
 
   roles:
     - { role: RomanShestakov.ansible-role-pi-setup, become: yes }
-
-  post_tasks:
-    - name: mount QNAP NFS
-      action: mount name=/opt/dev src=192.168.1.79:/Dev fstype=nfs state=mounted
-      sudo: yes
