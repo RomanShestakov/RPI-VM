@@ -61,7 +61,7 @@
 - src: git+https://github.com/RomanShestakov/ansible-role-manage-keys.git
   name: RomanShestakov.ansible-role-manage-keys
 
-- src: git+https://github.com/knopki/ansible-locale.git
+- src: git+https://github.com/RomanShestakov/ansible-locale.git
   name: knopki.locale
 
 - src: git+https://github.com/Stouts/Stouts.timezone.git
