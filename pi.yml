@@ -14,22 +14,17 @@
     - { role: RomanShestakov.ansible-role-tmux, become: yes, tags: ["tmux"] }
     - { role: RomanShestakov.ansible-role-erlang, become: yes, tags: ["erlang"] }
     - { role: RomanShestakov.ansible-role-emacs, become: yes, tags: ["emacs"] }
-    - { role: ANXS.postgresql,
-              become: yes,
-              postgresql_apt_repository: "{{ postgresql_apt_repository }}",
-              tags: ["postgresql"] }
+    # - { role: ANXS.postgresql,
+    #           become: yes,
+    #           postgresql_apt_repository: "{{ postgresql_apt_repository }}",
+    #           tags: ["postgresql"] }
     - { role: nicholsn.miniconda,
-              tags: ["miniconda"],
               miniconda_home: '/home/pi/miniconda',
-              url: "{{ miniconda_url }}",
-              tags: ["conda"]}
+              url: "{{ miniconda_url }}", tags: ["miniconda"] }
     - { role: RomanShestakov.ansible-role-conda-packages, conda_dir: '/home/pi/miniconda',tags: ["conda"] }
-    - { role: RomanShestakov.ansible-role-magma, rsa_key: '/root/.ssh/magma' }
+    - { role: RomanShestakov.ansible-role-magma, rsa_key: '/root/.ssh/magma', tags: ["magma"] }
 
   post_tasks:
     - name: .EMACS | get .emacs git repository
       git: repo={{ dot_emacs_repo_url }} dest="/home/pi/.emacs.d" accept_hostkey=yes
       sudo: False
-    - name: mount QNAP NFS
-      action: mount name=/opt/dev src={{ nfs }}:/Dev fstype=nfs opts=nolock state=mounted
-      sudo: yes
