@@ -56,7 +56,7 @@
   name: RomanShestakov.ansible-role-pi-setup
 
 - src: git+https://github.com/RomanShestakov/ansible-role-magma.git
-  version: "v0.2"
+  version: "v0.3"
   name: RomanShestakov.ansible-role-magma
 
 - src: git+https://github.com/RomanShestakov/ansible-role-manage-keys.git
