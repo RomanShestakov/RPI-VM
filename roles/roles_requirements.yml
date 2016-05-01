@@ -56,7 +56,7 @@
   name: RomanShestakov.ansible-role-pi-setup
 
 - src: git+https://github.com/RomanShestakov/ansible-role-magma.git
-  version: "refactor_cookie"
+  version: "v0.1"
   name: RomanShestakov.ansible-role-magma
 
 - src: git+https://github.com/RomanShestakov/ansible-role-manage-keys.git
