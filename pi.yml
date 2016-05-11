@@ -1,6 +1,6 @@
 # pi.yml - play to install a raspberry
 
-- name: pi.yml
+- name: Configure each node with the required software
   hosts: pis
   remote_user: pi
   sudo: yes
@@ -21,10 +21,33 @@
     - { role: nicholsn.miniconda,
               miniconda_home: '/home/pi/miniconda',
               url: "{{ miniconda_url }}", tags: ["miniconda"] }
-    - { role: RomanShestakov.ansible-role-conda-packages, conda_dir: '/home/pi/miniconda',tags: ["conda"] }
-    - { role: RomanShestakov.ansible-role-magma, rsa_key: '/root/.ssh/magma', tags: ["magma"] }
+    - { role: RomanShestakov.ansible-role-conda-packages,
+              conda_dir: '/home/pi/miniconda',
+              tags: ["conda"] }
+    - { role: RomanShestakov.ansible-role-magma,
+              rsa_key: '/root/.ssh/magma',
+              tags: ["magma"] }
 
+    # - { role: RomanShestakov.ansible-role-dotfiles,
+    #           dotfiles_repo_url: "{{ dot_emacs_repo_url }}",
+    #           dotfiles_dest: "/home/pi/.emacs.d",
+    #           run_bootstrap: False,
+    #           tags:  ["emacs_dotfile"]}
   post_tasks:
     - name: .EMACS | get .emacs git repository
       git: repo={{ dot_emacs_repo_url }} dest="/home/pi/.emacs.d" accept_hostkey=yes
       sudo: False
+
+
+- name: Install Magma on each host
+  hosts: pis
+  serial: 1
+  remote_user: pi
+  sudo: yes
+  vars_files:
+    - defaults/main.yml
+
+  roles:
+    - { role: RomanShestakov.ansible-role-magma,
+              rsa_key: '/root/.ssh/magma',
+              tags: ["magma"] }

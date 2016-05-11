@@ -9,3 +9,5 @@ conda_dir: "/home/vagrant/miniconda"
 postgresql_apt_repository: 'deb-src http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpi'
 miniconda_url: "http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh"
 ip_address: "{{ ansible_ssh_host }}"
+magma_join_node: 'node1@192.168.1.91'
+#join_node: False

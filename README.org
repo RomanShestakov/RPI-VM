@@ -4,28 +4,35 @@
 * Description
 Ansible playbook to provision pi cluster
 * Raspberry Pi
-** How to build the pi image:
+** Steps to init Pi
+*** Build pi image:
 cd /Users/romanshestakov/Downloads
 diskutil unmountDisk /dev/disk3
 sudo dd bs=1m if=2016-03-18-raspbian-jessie-lite.img of=/dev/disk3
+*** To check ssh connection
+#+BEGIN_SRC
 ssh pi@192.168.1.82
-ssh pi@192.168.1.83
-ssh pi@192.168.1.84
-** Load external ansible roles:
+#+END_SRC
+*** Load external ansible roles:
 #+BEGIN_SRC
 ./bin/role_update.sh
 #+END_SRC
-
-** How to init pi
-# this will setup wifi networking:
+*** Execute the playbook to init networking
 #+BEGIN_SRC
-ansible-playbook pi_init.yml -i inventory/pi_inventory --extra-vars="ssid=BTHub5-HFQX2 psk=2aeced3525" --ask-pass
+## first check actual IP addresses and edit inventory/inventory_init.ini
+## to include real ip address. They will be changed to the required IPs
+TODO: no need to setup wife
+ansible-playbook pi_init.yml -i inventory/inventory_init.ini  --extra-vars="ssid=BTHub5-HFQX2 psk=2aeced3525" --ask-pass
+ansible-playbook pi_init.yml -i inventory/inventory_init.ini  --ask-pass
 #+END_SRC
-** How to execute ansigle playbook to init cluster:
+*** Execute the playbook to setup cluster
 #+BEGIN_SRC
 ansible-playbook pi.yml -i inventory/inventory.ini --ask-pass --ask-vault-pass
 #+END_SRC
-
+*** Execute the playbook for a specific tag:
+#+BEGIN_SRC
+ansible-playbook pi.yml -i inventory/inventory.ini --ask-pass --ask-vault-pass --tags "magma"
+#+END_SRC
 ** How to encrypt ansible-vault:
 ansible-vault encrypt secretvars.yml
 ** how to connect via ssh:
@@ -50,3 +57,25 @@ http://www.pidramble.com/wiki/hardware/rgb-led-gpio
 http://www.rs-online.com/designspark/electronics/blog/ten-essential-raspberry-pi-projects
 https://howtotec.net/raspberrypi/raspberry-pi-projects-best-cool-projects-for-your-raspberry-pi-b-2
 https://dantehranian.wordpress.com/2015/07/24/managing-secrets-with-ansible-vault-the-missing-guide-part-1-of-2/
+http://0pointer.de/blog/projects/systemd-for-admins-3.html
+
+./bin/role_update.sh
+
+
+UNNING HANDLER [RomanShestakov.ansible-role-pi-setup : update hostname] *******
+changed: [192.168.1.82]
+fatal: [192.168.1.89]: UNREACHABLE! => {"changed": false, "msg": "ERROR! timed out", "unreachable": true}
+fatal: [192.168.1.85]: UNREACHABLE! => {"changed": false, "msg": "ERROR! timed out", "unreachable": true}
+
+RUNNING HANDLER [RomanShestakov.ansible-role-pi-setup : delete dhcp leases] ****
+changed: [192.168.1.82] => (item=/var/lib/dhcp/dhclient.leases)
+ok: [192.168.1.82] => (item=/var/lib/dhcpcd5/dhcpcd-eth0.lease)
+fatal: [192.168.1.89]: UNREACHABLE! => {"changed": false, "msg": "All items completed", "results": [{"item": "/var/lib/dhcp/dhclient.leases", "msg": "ERROR! timed out", "unreachable": true}, {"item": "/var/lib/dhcpcd5/dhcpcd-eth0.lease", "msg": "ERROR! timed out", "unreachable": true}]}
+fatal: [192.168.1.85]: UNREACHABLE! => {"changed": false, "msg": "All items completed", "results": [{"item": "/var/lib/dhcp/dhclient.leases", "msg": "ERROR! timed out", "unreachable": true}, {"item": "/var/lib/dhcpcd5/dhcpcd-eth0.lease", "msg": "ERROR! timed out", "unreachable": true}]}
+
+PLAY RECAP *********************************************************************
+192.168.1.82               : ok=12   changed=6    unreachable=0    failed=0
+192.168.1.85               : ok=10   changed=4    unreachable=2    failed=0
+192.168.1.89               : ok=10   changed=4    unreachable=2    failed=0
+
+wwobs:rpi-vm romanshestakov$

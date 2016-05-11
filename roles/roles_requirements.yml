@@ -19,6 +19,10 @@
   #version: "v1.1.0"
   name: RomanShestakov.ansible-role-erlang
 
+- src: git+https://github.com/RomanShestakov/ansible-role-erlpmd.git
+  version: "v0.1"
+  name: RomanShestakov.ansible-role-erlpmd
+
 # - src: git+https://github.com/mtpereira/ansible-erlang.git
 #   version: "1.1.0"
 #   name: mtpereira.erlang
@@ -56,7 +60,7 @@
   name: RomanShestakov.ansible-role-pi-setup
 
 - src: git+https://github.com/RomanShestakov/ansible-role-magma.git
-  version: "v0.4"
+  #version: "master"
   name: RomanShestakov.ansible-role-magma
 
 - src: git+https://github.com/RomanShestakov/ansible-role-manage-keys.git
