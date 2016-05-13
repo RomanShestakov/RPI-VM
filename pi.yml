@@ -8,12 +8,23 @@
     - defaults/main.yml
 
   roles:
-    - { role: geerlingguy.git, become: yes, tags: ["git"] }
-    - { role: RomanShestakov.ansible-role-manage-keys, become: yes, key_file: "vars/magma_key.yml" }
-    - { role: RomanShestakov.ansible-role-dotfiles, dotfiles_dest: "/home/pi" }
-    - { role: RomanShestakov.ansible-role-tmux, become: yes, tags: ["tmux"] }
-    - { role: RomanShestakov.ansible-role-erlang, become: yes, tags: ["erlang"] }
-    - { role: RomanShestakov.ansible-role-emacs, become: yes, tags: ["emacs"] }
+    - { role: geerlingguy.git,
+              become: yes,
+              tags: ["git"] }
+    - { role: RomanShestakov.ansible-role-manage-keys,
+              become: yes,
+              key_file: "vars/magma_key.yml" }
+    - { role: RomanShestakov.ansible-role-dotfiles,
+              dotfiles_dest: "/home/pi" }
+    - { role: RomanShestakov.ansible-role-tmux,
+              become: yes,
+              tags: ["tmux"] }
+    - { role: RomanShestakov.ansible-role-erlang,
+              become: yes,
+              tags: ["erlang"] }
+    - { role: RomanShestakov.ansible-role-emacs,
+              become: yes,
+              tags: ["emacs"] }
     # - { role: ANXS.postgresql,
     #           become: yes,
     #           postgresql_apt_repository: "{{ postgresql_apt_repository }}",
@@ -24,20 +35,14 @@
     - { role: RomanShestakov.ansible-role-conda-packages,
               conda_dir: '/home/pi/miniconda',
               tags: ["conda"] }
-    - { role: RomanShestakov.ansible-role-magma,
-              rsa_key: '/root/.ssh/magma',
-              tags: ["magma"] }
 
-    # - { role: RomanShestakov.ansible-role-dotfiles,
-    #           dotfiles_repo_url: "{{ dot_emacs_repo_url }}",
-    #           dotfiles_dest: "/home/pi/.emacs.d",
-    #           run_bootstrap: False,
-    #           tags:  ["emacs_dotfile"]}
   post_tasks:
     - name: .EMACS | get .emacs git repository
-      git: repo={{ dot_emacs_repo_url }} dest="/home/pi/.emacs.d" accept_hostkey=yes
+      git: >
+        repo={{ dot_emacs_repo_url }}
+        dest="/home/pi/.emacs.d"
+        accept_hostkey=yes
       sudo: False
-
 
 - name: Install Magma on each host
   hosts: pis
