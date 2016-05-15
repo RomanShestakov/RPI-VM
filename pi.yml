@@ -3,7 +3,7 @@
 - name: Configure each node with the required software
   hosts: pis
   remote_user: pi
-  sudo: yes
+  become: yes
   vars_files:
     - defaults/main.yml
 
@@ -31,24 +31,25 @@
     #           tags: ["postgresql"] }
     - { role: nicholsn.miniconda,
               miniconda_home: '/home/pi/miniconda',
-              url: "{{ miniconda_url }}", tags: ["miniconda"] }
+              url: "{{ miniconda_url }}",
+              tags: ["miniconda"] }
     - { role: RomanShestakov.ansible-role-conda-packages,
               conda_dir: '/home/pi/miniconda',
               tags: ["conda"] }
 
   post_tasks:
     - name: .EMACS | get .emacs git repository
+      become: no
       git: >
         repo={{ dot_emacs_repo_url }}
         dest="/home/pi/.emacs.d"
         accept_hostkey=yes
-      sudo: False
 
 - name: Install Magma on each host
   hosts: pis
   serial: 1
   remote_user: pi
-  sudo: yes
+  become: yes
   vars_files:
     - defaults/main.yml
 
