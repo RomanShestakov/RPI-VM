@@ -36,6 +36,8 @@
     - { role: RomanShestakov.ansible-role-conda-packages,
               conda_dir: '/home/pi/miniconda',
               tags: ["conda"] }
+    - { role: RomanShestakov.ansible-role-hypriot-docker,
+              tags: ["docker"] }
 
   post_tasks:
     - name: .EMACS | get .emacs git repository
