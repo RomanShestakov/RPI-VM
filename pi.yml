@@ -37,6 +37,8 @@
               conda_dir: '/home/pi/miniconda',
               tags: ["conda"] }
     - { role: RomanShestakov.ansible-role-hypriot-docker,
+              tags: ["hypriot-docker"] }
+    - { role: RomanShestakov.ansible-role-docker-gocd-agent-erlang-pi,
               tags: ["docker"] }
 
   post_tasks:
