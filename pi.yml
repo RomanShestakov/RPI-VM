@@ -13,7 +13,8 @@
               tags: ["git"] }
     - { role: RomanShestakov.ansible-role-manage-keys,
               become: yes,
-              key_file: "vars/magma_key.yml" }
+              key_file: "vars/magma_key.yml",
+              tags: ["keys"] }
     - { role: RomanShestakov.ansible-role-dotfiles,
               dotfiles_dest: "/home/pi" }
     - { role: RomanShestakov.ansible-role-tmux,
