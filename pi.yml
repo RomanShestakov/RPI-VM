@@ -2,7 +2,7 @@
 
 - name: Configure each node with the required software
   hosts: pis
-  remote_user: pi
+  #remote_user: pi
   become: yes
   vars_files:
     - defaults/main.yml
