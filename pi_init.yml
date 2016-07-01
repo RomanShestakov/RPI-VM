@@ -3,7 +3,7 @@
 - name: pi_init.yml
   hosts: pis
   remote_user: pi
-  sudo: yes
+  become: yes
 
   roles:
     - { role: RomanShestakov.ansible-role-pi-setup, become: yes }
