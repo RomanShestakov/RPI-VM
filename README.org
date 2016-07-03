@@ -8,7 +8,11 @@ Ansible playbook to provision pi cluster
 *** Build pi image:
 cd /Users/romanshestakov/Downloads
 diskutil unmountDisk /dev/disk3
-sudo dd bs=1m if=2016-03-18-raspbian-jessie-lite.img of=/dev/disk3
+#sudo dd bs=1m if=2016-03-18-raspbian-jessie-lite.img of=/dev/disk3
+# http://daoyuan.li/solution-dd-too-slow-on-mac-os-x/
+# use raw transfer:
+sudo dd bs=1m if=2016-03-18-raspbian-jessie-lite.img of=/dev/rdisk3
+
 *** To check ssh connection
 #+BEGIN_SRC
 ssh pi@192.168.1.82
@@ -21,8 +25,8 @@ ssh pi@192.168.1.82
 #+BEGIN_SRC
 ## first check actual IP addresses and edit inventory/inventory_init.ini
 ## to include real ip address. They will be changed to the required IPs
-TODO: no need to setup wife
-ansible-playbook pi_init.yml -i inventory/inventory_init.ini  --extra-vars="ssid=BTHub5-HFQX2 psk=2aeced3525" --ask-pass
+# TODO: no need to setup wi-fi
+# ansible-playbook pi_init.yml -i inventory/inventory_init.ini  --extra-vars="ssid=BTHub5-HFQX2 psk=2aeced3525" --ask-pass
 ansible-playbook pi_init.yml -i inventory/inventory_init.ini  --ask-pass
 #+END_SRC
 *** Execute the playbook to setup cluster
